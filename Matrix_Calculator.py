@@ -21,15 +21,54 @@ class Matrix:
         self.rows = len(value)
         self.cols = len(value[0]) #checks columns in matrix
 
-    #print
+    def print(self): #custom print to consol (for spec print style)
+        for row in self.value:
+            print(row)
+    
+    def add(self):
+        if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):
+            print("Matrices must have the same dimensions")
+            return None #check
+        
+        rows = len(matrix1)
+        cols = len(matrix1[0])
+
+        result_add = [[0 for _ in range(cols)] for _ in range(rows)]
+
+        for m in range(rows):
+            for n in range(cols):
+                result_add[m][n] = matrix1[m][n] + matrix2[m][n] 
+
+
+    def __str__(self): #official stirng rep
+        output = ""
+        for row in self.value:
+            output += str(row) + "\n"
+        return output
 
     #add - example trixie.plus(alice)
-
     #multiply
-
     #times scalar row
-
     #switch rows
+
+matrix1 = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12]
+]
+
+matrix2 = [
+    [3, 4, 5, 4],
+    [5, 3, 7, 8],
+    [9, 10, 25, 12]
+]
+
+trixie = Matrix("Matrix 1", matrix1)
+print(trixie)         
+trixie.print()
+
+'''
+user create matrix
 def check_int(prompt):
     while True:
         value = input(prompt)
@@ -71,3 +110,4 @@ if __name__ == "__main__":
             print(m.value[i][j], end=" ")
         print()
     print("Rows:" + str(m.rows) + "\nColums:" + str(m.cols))
+'''
