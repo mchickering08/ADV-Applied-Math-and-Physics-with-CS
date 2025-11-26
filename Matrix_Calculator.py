@@ -22,22 +22,23 @@ class Matrix:
         self.cols = len(value[0]) #checks columns in matrix
 
     def print(self): #custom print to consol (for spec print style)
-        for row in self.value:
+        for row in self.value: #for every row in the matrix
             print(row)
     
-    def add(self):
-        if len(matrix1) != len(matrix2) or len(matrix1[0]) != len(matrix2[0]):
+    def plus(self, other):
+        if self.rows != other.rows or self.cols != other.cols:
             print("Matrices must have the same dimensions")
-            return None #check
+            return None
         
-        rows = len(matrix1)
-        cols = len(matrix1[0])
+        result = []
+        for i in range(self.rows):
+            row = []
+            for j in range(self.cols):
+                row.append(self.value[i][j] + other.value[i][j])
+            result.append(row)
+        
+        return Matrix(self.name + "_plus_" + other.name, result)
 
-        result_add = [[0 for _ in range(cols)] for _ in range(rows)]
-
-        for m in range(rows):
-            for n in range(cols):
-                result_add[m][n] = matrix1[m][n] + matrix2[m][n] 
 
 
     def __str__(self): #official stirng rep
@@ -51,21 +52,13 @@ class Matrix:
     #times scalar row
     #switch rows
 
-matrix1 = [
-    [1, 2, 3, 4],
-    [5, 6, 7, 8],
-    [9, 10, 11, 12]
-]
+trixie = Matrix("A", [[1, 2], [3, 4]])
+alice = Matrix("B", [[5, 6], [7, 8]])
 
-matrix2 = [
-    [3, 4, 5, 4],
-    [5, 3, 7, 8],
-    [9, 10, 25, 12]
-]
-
-trixie = Matrix("Matrix 1", matrix1)
-print(trixie)         
 trixie.print()
+print("\n")
+print(trixie.plus(alice)) 
+ 
 
 '''
 user create matrix
