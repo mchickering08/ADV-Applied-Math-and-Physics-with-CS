@@ -39,6 +39,23 @@ class Matrix:
         
         return Matrix(self.name + "_plus_" + other.name, result)
 
+    def times(self, other):
+        # Check dimensions: self.cols must equal other.rows
+        if self.cols != other.rows:
+            print("Number of columns in the first matrix must equal the number of rows in the second matrix")
+            return None
+
+        result = [] #create empty result
+        for i in range(self.rows):
+            row = []
+            for j in range(other.cols):
+                total = 0
+                for k in range(self.cols):
+                    total += self.value[i][k] * other.value[k][j]
+                row.append(total)
+            result.append(row)
+
+        return Matrix(self.name + "_times_" + other.name, result)
 
 
     def __str__(self): #official stirng rep
@@ -58,7 +75,7 @@ alice = Matrix("B", [[5, 6], [7, 8]])
 trixie.print()
 print("\n")
 print(trixie.plus(alice)) 
- 
+print(trixie.times(alice))
 
 '''
 user create matrix
